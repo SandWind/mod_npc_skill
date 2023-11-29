@@ -51,140 +51,137 @@ public:
 
     static void LearnAllRecipesInProfession(Player *player, SkillType skill)
     {
-        if (HasFreeProfession(player, skill))
+        switch (skill)
         {
-            switch (skill)
+            case SKILL_ALCHEMY:
+                player->learnSpell(2259);
+                player->learnSpell(3101);
+                player->learnSpell(3464);
+                player->learnSpell(11611);
+                player->learnSpell(28596);
+                player->learnSpell(51304);
+                break;
+            case SKILL_BLACKSMITHING:
+                player->learnSpell(2018);
+                player->learnSpell(3100);
+                player->learnSpell(3538);
+                player->learnSpell(9785);
+                player->learnSpell(29844);
+                player->learnSpell(51300);
+                break;
+            case SKILL_ENCHANTING:
+                player->learnSpell(7411);
+                player->learnSpell(7412);
+                player->learnSpell(7413);
+                player->learnSpell(13920);
+                player->learnSpell(28029);
+                player->learnSpell(51313);
+                break;
+            case SKILL_ENGINEERING:
+                player->learnSpell(4036);
+                player->learnSpell(4037);
+                player->learnSpell(4038);
+                player->learnSpell(12656);
+                player->learnSpell(30350);
+                player->learnSpell(51306);
+                break;
+            case SKILL_INSCRIPTION:
+                player->learnSpell(45357);
+                player->learnSpell(45358);
+                player->learnSpell(45359);
+                player->learnSpell(45360);
+                player->learnSpell(45361);
+                player->learnSpell(45363);
+                break;
+            case SKILL_JEWELCRAFTING:
+                player->learnSpell(25229);
+                player->learnSpell(25230);
+                player->learnSpell(28894);
+                player->learnSpell(28895);
+                player->learnSpell(28897);
+                player->learnSpell(51311);
+                break;
+            case SKILL_LEATHERWORKING:
+                player->learnSpell(2108);
+                player->learnSpell(3104);
+                player->learnSpell(3811);
+                player->learnSpell(10662);
+                player->learnSpell(32549);
+                player->learnSpell(51302);
+                break;
+            case SKILL_TAILORING:
+                player->learnSpell(3908);
+                player->learnSpell(3909);
+                player->learnSpell(3910);
+                player->learnSpell(12180);
+                player->learnSpell(26790);
+                player->learnSpell(51309);
+                break;
+            case SKILL_COOKING:
+                player->learnSpell(51296);
+                break;
+            case SKILL_FIRST_AID:
+                player->learnSpell(45542);
+                break;
+            case SKILL_FISHING:
+                player->learnSpell(65293);
+                break;
+            case SKILL_MINING:
+                player->learnSpell(2575);
+                player->learnSpell(2576);
+                player->learnSpell(3564);
+                player->learnSpell(10248);
+                player->learnSpell(29354);
+                player->learnSpell(50310);
+                break;
+            case SKILL_SKINNING:
+                player->learnSpell(8613);
+                player->learnSpell(8617);
+                player->learnSpell(8618);
+                player->learnSpell(10768);
+                player->learnSpell(32678);
+                player->learnSpell(50305);
+                break;
+            case SKILL_HERBALISM:
+                player->learnSpell(2366);
+                player->learnSpell(2368);
+                player->learnSpell(3570);
+                player->learnSpell(11993);
+                player->learnSpell(28695);
+                player->learnSpell(50300);
+                break;
+            default:
+                break;
+        }
+
+        if (SkillLineEntry const *SkillInfo = sSkillLineStore.LookupEntry(skill))
+        {
+            player->SetSkill(SkillInfo->id, player->GetSkillStep(SkillInfo->id), 450, 450);
+
+            uint32 ClassMask = player->getClassMask();
+
+            for (uint32 i = 0; i < sSkillLineAbilityStore.GetNumRows(); ++i)
             {
-                case SKILL_ALCHEMY:
-                    player->learnSpell(2259);
-                    player->learnSpell(3101);
-                    player->learnSpell(3464);
-                    player->learnSpell(11611);
-                    player->learnSpell(28596);
-                    player->learnSpell(51304);
-                    break;
-                case SKILL_BLACKSMITHING:
-                    player->learnSpell(2018);
-                    player->learnSpell(3100);
-                    player->learnSpell(3538);
-                    player->learnSpell(9785);
-                    player->learnSpell(29844);
-                    player->learnSpell(51300);
-                    break;
-                case SKILL_ENCHANTING:
-                    player->learnSpell(7411);
-                    player->learnSpell(7412);
-                    player->learnSpell(7413);
-                    player->learnSpell(13920);
-                    player->learnSpell(28029);
-                    player->learnSpell(51313);
-                    break;
-                case SKILL_ENGINEERING:
-                    player->learnSpell(4036);
-                    player->learnSpell(4037);
-                    player->learnSpell(4038);
-                    player->learnSpell(12656);
-                    player->learnSpell(30350);
-                    player->learnSpell(51306);
-                    break;
-                case SKILL_INSCRIPTION:
-                    player->learnSpell(45357);
-                    player->learnSpell(45358);
-                    player->learnSpell(45359);
-                    player->learnSpell(45360);
-                    player->learnSpell(45361);
-                    player->learnSpell(45363);
-                    break;
-                case SKILL_JEWELCRAFTING:
-                    player->learnSpell(25229);
-                    player->learnSpell(25230);
-                    player->learnSpell(28894);
-                    player->learnSpell(28895);
-                    player->learnSpell(28897);
-                    player->learnSpell(51311);
-                    break;
-                case SKILL_LEATHERWORKING:
-                    player->learnSpell(2108);
-                    player->learnSpell(3104);
-                    player->learnSpell(3811);
-                    player->learnSpell(10662);
-                    player->learnSpell(32549);
-                    player->learnSpell(51302);
-                    break;
-                case SKILL_TAILORING:
-                    player->learnSpell(3908);
-                    player->learnSpell(3909);
-                    player->learnSpell(3910);
-                    player->learnSpell(12180);
-                    player->learnSpell(26790);
-                    player->learnSpell(51309);
-                    break;
-                case SKILL_COOKING:
-                    player->learnSpell(51296);
-                    break;
-                case SKILL_FIRST_AID:
-                    player->learnSpell(45542);
-                    break;
-                case SKILL_FISHING:
-                    player->learnSpell(65293);
-                    break;
-                case SKILL_MINING:
-                    player->learnSpell(2575);
-                    player->learnSpell(2576);
-                    player->learnSpell(3564);
-                    player->learnSpell(10248);
-                    player->learnSpell(29354);
-                    player->learnSpell(50310);
-                    break;
-                case SKILL_SKINNING:
-                    player->learnSpell(8613);
-                    player->learnSpell(8617);
-                    player->learnSpell(8618);
-                    player->learnSpell(10768);
-                    player->learnSpell(32678);
-                    player->learnSpell(50305);
-                    break;
-                case SKILL_HERBALISM:
-                    player->learnSpell(2366);
-                    player->learnSpell(2368);
-                    player->learnSpell(3570);
-                    player->learnSpell(11993);
-                    player->learnSpell(28695);
-                    player->learnSpell(50300);
-                    break;
-                default:
-                    break;
-            }
-
-            if (SkillLineEntry const *SkillInfo = sSkillLineStore.LookupEntry(skill))
-            {
-                player->SetSkill(SkillInfo->id, player->GetSkillStep(SkillInfo->id), 450, 450);
-
-                uint32 ClassMask = player->getClassMask();
-
-                for (uint32 i = 0; i < sSkillLineAbilityStore.GetNumRows(); ++i)
+                if (SkillLineAbilityEntry const *SkillLine = sSkillLineAbilityStore.LookupEntry(i))
                 {
-                    if (SkillLineAbilityEntry const *SkillLine = sSkillLineAbilityStore.LookupEntry(i))
-                    {
-                        if (SkillLine->SkillLine != SkillInfo->id)
-                            continue;
+                    if (SkillLine->SkillLine != SkillInfo->id)
+                        continue;
 
-                        if (SkillLine->SupercededBySpell)
-                            continue;
+                    if (SkillLine->SupercededBySpell)
+                        continue;
 
-                        if (SkillLine->RaceMask != 0)
-                            continue;
+                    if (SkillLine->RaceMask != 0)
+                        continue;
 
-                        if (SkillLine->ClassMask && (SkillLine->ClassMask & ClassMask) == 0)
-                            continue;
+                    if (SkillLine->ClassMask && (SkillLine->ClassMask & ClassMask) == 0)
+                        continue;
 
-                        SpellInfo const *SpellInfo2 = sSpellMgr->GetSpellInfo(SkillLine->Spell);
+                    SpellInfo const *SpellInfo2 = sSpellMgr->GetSpellInfo(SkillLine->Spell);
 
-                        if (!SpellInfo2 || !SpellMgr::IsSpellValid(SpellInfo2))
-                            continue;
+                    if (!SpellInfo2 || !SpellMgr::IsSpellValid(SpellInfo2))
+                        continue;
 
-                        player->learnSpell(SkillLine->Spell);
-                    }
+                    player->learnSpell(SkillLine->Spell);
                 }
             }
         }
