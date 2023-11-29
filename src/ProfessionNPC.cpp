@@ -9,20 +9,20 @@ public:
 
     bool OnGossipHello(Player *player, Creature *creature) override
     {
-        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "Alchemy", GOSSIP_SENDER_MAIN, SKILL_ALCHEMY);
-        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "Blacksmithing", GOSSIP_SENDER_MAIN, SKILL_BLACKSMITHING);
-        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "Leatherworking", GOSSIP_SENDER_MAIN, SKILL_LEATHERWORKING);
-        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "Tailoring", GOSSIP_SENDER_MAIN, SKILL_TAILORING);
-        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "Engineering", GOSSIP_SENDER_MAIN, SKILL_ENGINEERING);
-        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "Enchanting", GOSSIP_SENDER_MAIN, SKILL_ENCHANTING);
-        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "Jewelcrafting", GOSSIP_SENDER_MAIN, SKILL_JEWELCRAFTING);
-        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "Inscription", GOSSIP_SENDER_MAIN, SKILL_INSCRIPTION);
-        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "Herbalism", GOSSIP_SENDER_MAIN, SKILL_HERBALISM);
-        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "Skinning", GOSSIP_SENDER_MAIN, SKILL_SKINNING);
-        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "Mining", GOSSIP_SENDER_MAIN, SKILL_MINING);
-        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "Cooking", GOSSIP_SENDER_MAIN, SKILL_COOKING);
-        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "First Aid", GOSSIP_SENDER_MAIN, SKILL_FIRST_AID);
-        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "Fishing", GOSSIP_SENDER_MAIN, SKILL_FISHING);
+        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "炼金术", GOSSIP_SENDER_MAIN, SKILL_ALCHEMY);
+        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "锻造", GOSSIP_SENDER_MAIN, SKILL_BLACKSMITHING);
+        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "制皮术", GOSSIP_SENDER_MAIN, SKILL_LEATHERWORKING);
+        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "裁缝术", GOSSIP_SENDER_MAIN, SKILL_TAILORING);
+        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "工程学", GOSSIP_SENDER_MAIN, SKILL_ENGINEERING);
+        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "附魔", GOSSIP_SENDER_MAIN, SKILL_ENCHANTING);
+        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "珠宝制作", GOSSIP_SENDER_MAIN, SKILL_JEWELCRAFTING);
+        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "符文", GOSSIP_SENDER_MAIN, SKILL_INSCRIPTION);
+        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "草药学", GOSSIP_SENDER_MAIN, SKILL_HERBALISM);
+        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "剥皮", GOSSIP_SENDER_MAIN, SKILL_SKINNING);
+        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "采矿", GOSSIP_SENDER_MAIN, SKILL_MINING);
+        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "烹饪", GOSSIP_SENDER_MAIN, SKILL_COOKING);
+        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "急救", GOSSIP_SENDER_MAIN, SKILL_FIRST_AID);
+        AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "捕鱼", GOSSIP_SENDER_MAIN, SKILL_FISHING);
 
         SendGossipMenuFor(player, DEFAULT_GOSSIP_MESSAGE, creature);
         return true;
@@ -36,7 +36,7 @@ public:
         {
             if (player->HasSkill(SKILL))
             {
-                player->GetSession()->SendNotification("You already have this work!");
+                player->GetSession()->SendNotification("学习完毕");
                 CloseGossipMenuFor(player);
             }
             else
